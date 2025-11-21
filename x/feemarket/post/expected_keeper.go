@@ -2,6 +2,7 @@ package post
 
 import (
 	"context"
+	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
@@ -20,6 +21,9 @@ type AccountKeeper interface {
 	GetModuleAddress(moduleName string) sdk.AccAddress
 	GetModuleAccount(ctx context.Context, name string) sdk.ModuleAccountI
 	NewAccountWithAddress(ctx context.Context, addr sdk.AccAddress) sdk.AccountI
+	RemoveExpiredUnorderedNonces(ctx sdk.Context) error
+	TryAddUnorderedNonce(ctx sdk.Context, sender []byte, timestamp time.Time) error
+	UnorderedTransactionsEnabled() bool
 }
 
 // BankKeeper defines the contract needed for supply related APIs.

@@ -4,6 +4,7 @@ package mocks
 
 import (
 	context "context"
+	"time"
 
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
@@ -118,6 +119,20 @@ func (_m *AccountKeeper) NewAccountWithAddress(ctx context.Context, addr types.A
 // SetAccount provides a mock function with given fields: ctx, acc
 func (_m *AccountKeeper) SetAccount(ctx context.Context, acc types.AccountI) {
 	_m.Called(ctx, acc)
+}
+
+func (_m *AccountKeeper) RemoveExpiredUnorderedNonces(ctx context.Context) error {
+	return nil
+}
+
+// TryAddUnorderedNonce mocks base method.
+func (_m *AccountKeeper) TryAddUnorderedNonce(ctx types.Context, sender []byte, timestamp time.Time) error {
+	return nil
+}
+
+// UnorderedTransactionsEnabled mocks base method.
+func (_m *AccountKeeper) UnorderedTransactionsEnabled() bool {
+	return false
 }
 
 // NewAccountKeeper creates a new instance of AccountKeeper. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
